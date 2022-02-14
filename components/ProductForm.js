@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
+import {useRouter} from next/router
 
 export const ProductForm = () => {
   const [product, setProduct] = useState({
@@ -7,10 +8,14 @@ export const ProductForm = () => {
     description: "",
     price: 0,
   });
+
+  const router = useRouter()
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await axios.post("/api/products", product);
     console.log(response);
+    router.push('/')
   };
 
   //Cuando tipeo lleno los campos de la const product

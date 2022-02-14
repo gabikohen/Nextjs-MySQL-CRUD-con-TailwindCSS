@@ -1,8 +1,12 @@
-
-
+import {ProductForm} from "../components/ProductForm"
+import { Layout } from "../components/Layout"
 const newProduct = () => {
   return (
-    <div>add one product</div>
+    <Layout>
+    <div>
+      <ProductForm/>
+    </div>
+    </Layout>
   )
 }
 
