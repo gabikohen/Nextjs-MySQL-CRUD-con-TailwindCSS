@@ -7,26 +7,35 @@ export default async function handler(req, res) {
     case "POST":
       return await await saveProduct(req, res);
   }
-
 }
 
-  const getProduct = async (req, res) => {
+const getProduct = async (req, res) => {
+  try {
+    
     const [result] = await pool.query("SELECT * FROM product");
-    console.log(result);
-    return res.status(200).json("Getting products");
-  };
+    
+    return res.status(200).json(result);
+  } catch (error) {
+   return res.status(500).json({error});
+  }
+};
 
-  const saveProduct = async (req, res) => {
-    const { name, description, price } = req.body;
-
+const saveProduct = async (req, res) => {
+  const { name, description, price } = req.body;
+  try {
     const [result] = await pool.query("INSERT INTO product set ?", {
       name,
       description,
       price,
     });
 
-    return res.status(200).json({ name, price, description, id: result.insertId });
-  };
+    return res
+      .status(200)
+      .json({ name, price, description, id: result.insertId });
+  } catch (error) {
+   return res.status(500).json({massage: error.message})
+  }
+};
 
 /*   
     if(req.method === 'POST'){

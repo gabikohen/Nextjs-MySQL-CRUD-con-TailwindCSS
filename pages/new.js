@@ -1,6 +1,7 @@
+
 import {ProductForm} from "../components/ProductForm"
 import { Layout } from "../components/Layout"
-const newProduct = () => {
+const newPage = () => {
   return (
     <Layout>
     <div>
@@ -10,4 +11,4 @@ const newProduct = () => {
   )
 }
 
-export default newProduct
+export default newPage
